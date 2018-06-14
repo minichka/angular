@@ -7,6 +7,7 @@ import { CourseListItemComponent } from './course-list-item/course-list-item.com
   imports: [
     CommonModule
   ],
-  declarations: [CourseListComponent, CourseListItemComponent]
+  declarations: [CourseListComponent, CourseListItemComponent],
+  exports: [CourseListComponent]
 })
 export class CourseListModule { }
