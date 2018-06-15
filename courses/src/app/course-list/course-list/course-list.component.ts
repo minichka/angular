@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseListItem } from '../course-list-item.model';
+import { CourseListService } from '../course-list.service';
 
 @Component({
   selector: 'app-course-list',
@@ -8,46 +9,11 @@ import { CourseListItem } from '../course-list-item.model';
 })
 export class CourseListComponent implements OnInit {
 
-  public courseItem : CourseListItem[] = [
-    {
-      id: 1,
-      title: 'test1',
-      creation_date: new Date(),
-      duration: 1,
-      description: 'test1'
-    },
-    {
-      id: 1,
-      title: 'test1',
-      creation_date: new Date(),
-      duration: 1,
-      description: 'test1'
-    },
-    {
-      id: 1,
-      title: 'test1',
-      creation_date: new Date(),
-      duration: 1,
-      description: 'test1'
-    },
-    {
-      id: 1,
-      title: 'test1',
-      creation_date: new Date(),
-      duration: 1,
-      description: 'test1'
-    },
-    {
-      id: 1,
-      title: 'test1',
-      creation_date: new Date(),
-      duration: 1,
-      description: 'test1'
-    }
-  ];
-  constructor() { }
+  public courseItem : CourseListItem[] = [];
+  constructor(private courseListService: CourseListService) { }
 
   ngOnInit() {
+    this.courseItem = this.courseListService.getCourseList();
   }
 
 }
