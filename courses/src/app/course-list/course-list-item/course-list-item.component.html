@@ -1,14 +1,14 @@
 
 <div class="container alert alert-info" role="alert">
   <div class="row">
-    <div class="col-lg-7">{{courseItem.title}}</div>
-    <div class="col-lg-2">{{courseItem.duration}} min</div>
-    <div class="col-lg-2">{{courseItem.creation_date}}</div>
+    <div class="col-lg-7">{{courseItem?.title}}</div>
+    <div class="col-lg-2">{{courseItem?.duration}} min</div>
+    <div class="col-lg-2">{{courseItem?.creation_date}}</div>
     <div class="col-lg-1"><button type="button" class="btn btn-block btn-primary"> Edit </button></div>
   </div>
   <div class="row">
     <div class="col-lg-11">
-      <p>{{courseItem.description}}</p>
+      <p>{{courseItem?.description}}</p>
     </div>
     <div class="col-lg-1">
         <button type="button" (click) = 'delete($event)' class="btn btn-block btn-danger"> Delete </button>

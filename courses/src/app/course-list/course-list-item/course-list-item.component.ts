@@ -1,5 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, NgModule} from '@angular/core';
 import { CourseListItem } from '../../../model/course-list-item.model';
+import {FormsModule} from '@angular/forms'
+
+@NgModule({
+  imports: [FormsModule]
+})
 
 @Component({
   selector: 'app-course-list-item',
