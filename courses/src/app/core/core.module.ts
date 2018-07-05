@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoComponent } from './header/logo/logo.component';
+import { BreadcrumpsComponent } from './breadcrumps/breadcrumps.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [HeaderComponent, FooterComponent, LogoComponent],
-  exports: [HeaderComponent, FooterComponent]
+  declarations: [HeaderComponent, FooterComponent, LogoComponent, BreadcrumpsComponent],
+  exports: [HeaderComponent, FooterComponent, BreadcrumpsComponent]
 })
 export class CoreModule { }

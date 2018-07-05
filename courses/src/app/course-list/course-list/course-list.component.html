@@ -1,5 +1,4 @@
 <div class="container">
-    <app-breadcrumps></app-breadcrumps>
     <app-search></app-search>
     <app-course-list-item *ngFor="let item of courseItem" [courseItem] = 'item' (deleteItem) = 'deleteCourseItem($event)'></app-course-list-item>
     <app-pagination></app-pagination>
