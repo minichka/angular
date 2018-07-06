@@ -2,12 +2,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchComponent } from './search.component';
 import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
 
   beforeEach(async(() => {
+
     TestBed.configureTestingModule({
       declarations: [ SearchComponent ],
       imports: [FormsModule]
@@ -22,18 +24,21 @@ describe('SearchComponent', () => {
   });
 
   it('should create', () => {
-  
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
-  //   it('should return value from input', () =>{
-  //   const hostElement = fixture.nativeElement;
-  //   const nameInput: HTMLInputElement = hostElement.querySelector('input');
-  //   //const button: HTMLButtonElement = hostElement.querySelector('button');
-  //   nameInput.value = 'testSearchComponent';
-  //   nameInput.dispatchEvent(new Event('input'));
-  //   fixture.detectChanges();
-  //   expect(hostElement.search()).toBe(nameInput.value);
-
-  // })
+    it('search function is called ', () =>{
+      const hostElement = fixture.nativeElement;
+      // const input: HTMLInputElement = hostElement.querySelector('input');
+      // input.value = 'test';
+      // input.dispatchEvent(new Event('input'));
+      const button = fixture.debugElement.query(By.css('button'));
+      spyOn(component,'search').and.callThrough();
+      button.triggerEventHandler('click',null);
+      fixture.detectChanges();
+      //expect().toEqual('test');
+      //expect(component.search).toHaveBeenCalledWith('test');
+      expect(component.search).toHaveBeenCalled();
+  })
 });
