@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CourseListComponent } from './course-list.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CourseListService } from '../../services/course-list.service';
+import { By } from '@angular/platform-browser';
 
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
@@ -55,8 +56,8 @@ describe('CourseListComponent', () => {
       expect(component.courseItem).toBe(testList);
   });
 
-  xit('ngFor count', () => {
-      let divs : Array<HTMLDivElement> = fixture.nativeElement.querySelector('.courseItem');
+  it('ngFor count', () => {
+      let divs = fixture.debugElement.queryAll(By.css('app-course-list-item'));
       fixture.detectChanges();
       expect(divs.length).toBe(testList.length);
   });
