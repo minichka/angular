@@ -16,9 +16,9 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  search(item : string): string{
+  search(item : string): void{
     if(item){
-      return item;
+      console.log(item);
     }
       
   }

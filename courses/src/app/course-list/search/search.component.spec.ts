@@ -29,16 +29,25 @@ describe('SearchComponent', () => {
   });
 
     it('search function is called ', () =>{
-      const hostElement = fixture.nativeElement;
-      // const input: HTMLInputElement = hostElement.querySelector('input');
-      // input.value = 'test';
-      // input.dispatchEvent(new Event('input'));
-      const button = fixture.debugElement.query(By.css('button'));
-      spyOn(component,'search').and.callThrough();
+      const button = fixture.debugElement.query(By.css('.search'));
+      spyOn(component,'search');
       button.triggerEventHandler('click',null);
       fixture.detectChanges();
-      //expect().toEqual('test');
-      //expect(component.search).toHaveBeenCalledWith('test');
       expect(component.search).toHaveBeenCalled();
   })
+
+  it('search function is called with input value', () =>{
+    const hostElement = fixture.nativeElement;
+    const input: HTMLInputElement = hostElement.querySelector('input');
+    input.value = 'test';
+    input.dispatchEvent(new Event('input'));
+    const button = fixture.debugElement.query(By.css('.search'));
+    button.triggerEventHandler('click',null);
+    spyOn(component,'search');
+    fixture.detectChanges();
+    //expect(component.search).toHaveBeenCalledWith('test');
+    //expect(component.search).toHaveBeenCalled();
+
+    
+  });
 });

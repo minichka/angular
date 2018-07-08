@@ -7,10 +7,30 @@ import { CourseListService } from '../../services/course-list.service';
 describe('CourseListComponent', () => {
   let component: CourseListComponent;
   let fixture: ComponentFixture<CourseListComponent>;
-  const courseService = jasmine.createSpyObj('CourseListService', ['getCourseList']);
-  
+  //let courseService: Partial<CourseListService>;
+  let getCourseListSpy;
+  const testList = [
+    {
+      id: 1,
+      title: 'test1',
+      creation_date: '16.05.2018',
+      duration: 40,
+      description: 'description1'
+    },
+    {
+      id: 2,
+      title: 'test2',
+      creation_date: '16.05.2018',
+      duration: 45,
+      description: 'description2'
+    }];
 
+    
   beforeEach(async(() => {
+    //courseService = {getCourseList: jasmine.createSpy('getCourseList')};
+    //courseService.getCourseList.and.returnValue(testList);
+    const courseService = jasmine.createSpyObj('CourseListService', ['getCourseList']);
+    getCourseListSpy = courseService.getCourseList.and.returnValue(testList);
     TestBed.configureTestingModule({
       declarations: [ CourseListComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -29,8 +49,17 @@ describe('CourseListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('ngOnInit get list of items',() => {
-      component.ngOnInit();
-      expect(component.courseItem).toBeTruthy();
+  it('ngOnInit get list of items',() => {
+      fixture.detectChanges();
+      expect(getCourseListSpy.calls.any()).toBe(true,'getCourseList called');
+      expect(component.courseItem).toBe(testList);
   });
+
+  xit('ngFor count', () => {
+      let divs : Array<HTMLDivElement> = fixture.nativeElement.querySelector('.courseItem');
+      fixture.detectChanges();
+      expect(divs.length).toBe(testList.length);
+  });
+
+
 });
