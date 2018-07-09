@@ -77,5 +77,6 @@ describe('CourseListItemComponent', () => {
   it('test data binding', () => {
     let title = fixture.nativeElement.querySelector('.title').textContent;
     expect(title).toEqual(expectedDeletedItem.title);
+    
   });
 });

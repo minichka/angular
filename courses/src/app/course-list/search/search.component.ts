@@ -11,6 +11,7 @@ import {FormsModule} from '@angular/forms'
 })
 
 export class SearchComponent implements OnInit {
+  public searchItem: string = '';
   constructor() { }
 
   ngOnInit() {
