@@ -1,6 +1,9 @@
 <div class="container">
-    <app-search></app-search>
-    <app-course-list-item *ngFor="let item of courseItem|sortByDuration" [courseItem] = 'item' (deleteItem) = 'deleteCourseItem($event)' (searchItem) = 'search($event)'></app-course-list-item>
+    <app-search (searchItems) = 'search($event)'></app-search>
+    <app-course-list-item *ngFor="let item of courseItem|sortByDuration" 
+                          [courseItem] = 'item'
+                          (deleteItem) = 'deleteCourseItem($event)'>
+    </app-course-list-item>
     <div *ngIf="courseItem.length == 0">No data. Feel free to add new course</div>
     <app-pagination></app-pagination>
 </div>

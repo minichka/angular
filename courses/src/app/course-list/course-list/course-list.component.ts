@@ -22,7 +22,10 @@ export class CourseListComponent implements OnInit {
   }
 
   search(searchString: string): void{
-    console.log(searchString);
+    if(!searchString){
+      //this.ngOnInit();
+      this.courseItem = this.courseListService.getCourseList();
+    }
     this.courseItem = new SearchPipe().transform(this.courseItem,searchString);
   }
 }

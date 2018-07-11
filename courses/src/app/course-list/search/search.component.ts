@@ -11,18 +11,14 @@ import {FormsModule} from '@angular/forms'
 })
 
 export class SearchComponent implements OnInit {
-  @Output() searchItem : EventEmitter<String> = new EventEmitter<String>();
-  @Input() searchString: string = '';
+  @Output() searchItems : EventEmitter<String> = new EventEmitter<String>();
+  @Input() searchString: string;
   constructor() { }
 
   ngOnInit() {
   }
 
-  search(searchString : string): void{
-    if(searchString){
-      console.log(searchString);
-      this.searchItem.emit(searchString);
-    }
-      
+  search( ): void{
+    this.searchItems.emit(this.searchString);    
   }
 }
