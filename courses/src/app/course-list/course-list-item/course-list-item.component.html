@@ -1,9 +1,10 @@
 
-<div class="courseItem container alert alert-info" role="alert">
+<div appCourseBoarder [creationDate]= "{{courseItem.creation_date}}"
+     class="courseItem container alert alert-info" role="alert">
   <div class="row">
     <div class="title col-lg-7">{{courseItem?.title}}</div>
     <div class="duration col-lg-2">{{courseItem?.duration}} min</div>
-    <div class="creation col-lg-2">{{courseItem?.creation_date}}</div>
+    <div class="creation col-lg-2">{{courseItem?.creation_date| date}}</div>
     <div class="col-lg-1"><button type="button" class="btn btn-block btn-primary"> Edit </button></div>
   </div>
   <div class="row">

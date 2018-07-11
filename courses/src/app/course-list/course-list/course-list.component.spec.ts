@@ -14,16 +14,18 @@ describe('CourseListComponent', () => {
     {
       id: 1,
       title: 'test1',
-      creation_date: '16.05.2018',
+      creation_date: new Date(2018,5,16),
       duration: 40,
-      description: 'description1'
+      description: 'description1',
+      top_rated: false
     },
     {
       id: 2,
       title: 'test2',
-      creation_date: '16.05.2018',
+      creation_date: new Date(2018,5,16),
       duration: 45,
-      description: 'description2'
+      description: 'description2',
+      top_rated: true
     }];
 
     
