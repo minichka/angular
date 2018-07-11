@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule} from '@angular/core';
+import { Component, OnInit, NgModule,Output,EventEmitter, Input} from '@angular/core';
 import {FormsModule} from '@angular/forms'
 
 @NgModule({
@@ -11,15 +11,17 @@ import {FormsModule} from '@angular/forms'
 })
 
 export class SearchComponent implements OnInit {
-  public searchItem: string = '';
+  @Output() searchItem : EventEmitter<String> = new EventEmitter<String>();
+  @Input() searchString: string = '';
   constructor() { }
 
   ngOnInit() {
   }
 
-  search(item : string): void{
-    if(item){
-      console.log(item);
+  search(searchString : string): void{
+    if(searchString){
+      console.log(searchString);
+      this.searchItem.emit(searchString);
     }
       
   }

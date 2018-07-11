@@ -1,16 +1,18 @@
 import { Component, OnInit, Input, Output, EventEmitter, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms'
 import { CourseListItem } from '../../model/course-list-item.model';
-import { CourseBoarderDirective } from './directive/course-boarder.directive';
+import { CourseBorderDirective } from './directive/course-boarder.directive';
+import { DurationPipe } from './pipe/duration-pipe.pipe';
 
 @NgModule({
   imports: [FormsModule],
-  declarations: [CourseBoarderDirective]
+  declarations: [CourseBorderDirective, DurationPipe]
 })
 @Component({
   selector: 'app-course-list-item',
   templateUrl: './course-list-item.component.html',
-  styleUrls: ['./course-list-item.component.css']
+  styleUrls: ['./course-list-item.component.css'],
+  styles: [`.topRate{background-color: #fcf8c7}`]
 })
 export class CourseListItemComponent implements OnInit {
 

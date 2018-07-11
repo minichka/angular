@@ -1,25 +1,34 @@
-import { Directive, Input, ElementRef, AfterViewInit } from '@angular/core';
+import { Directive, Input, ElementRef, Renderer2} from '@angular/core';
 
 @Directive({
-  selector: '[appCourseBoarder]'
+  selector: "[appCourseBorder]"
 })
-export class CourseBoarderDirective implements AfterViewInit{
+export class CourseBorderDirective{
 
+  //@Input('appCourseBoarder') creationDate: Date;
   @Input() creationDate: Date;
 
-  constructor(private elRef: ElementRef) {}
-  ngAfterViewInit(): void{
+  constructor(private elRef: ElementRef, private render: Renderer2) {
+    console.log(this.creationDate);
+    this.render.setStyle(this.elRef.nativeElement,'border-color', this.setborderColor(this.creationDate));
+  }
+  private setborderColor(creation_date: Date) : string{
+
+    let color = 'black';
     //creationDate < currentDate && creationDate >= currentDate - 14days - 
     //fresh course (use green border)
     let current_date: Date = new Date();
-    if(this.creationDate < current_date &&
-       this.creationDate.getDate() >= current_date.getDate() - 14){
-      this.elRef.nativeElement.style.border.color = 'green';
+    //console.log(creation_date);
+    if(creation_date < current_date &&
+       creation_date.getDate() >= current_date.getDate() - 14){
+      color = 'green';
     }
     //creationDate > currentDate - upcoming course (use blue border)
-    else if(this.creationDate > current_date){
-      
+    else if(creation_date > current_date){
+      color = 'blue';
     }
+
+    return color;
   }
 
 }
