@@ -11,11 +11,14 @@ import { SortByDurationPipe } from './course-list/pipe/sort-by-duration.pipe';
 import { SearchPipe } from './course-list/pipe/search.pipe';
 
 
+
+
 @NgModule({
   imports: [
     CommonModule,FormsModule
   ],
   declarations: [CourseListComponent, CourseListItemComponent, SearchComponent, PaginationComponent,CourseBorderDirective, DurationPipe, SortByDurationPipe, SearchPipe],
+  providers: [SearchPipe],
   exports: [CourseListComponent]
 })
 export class CourseListModule { }

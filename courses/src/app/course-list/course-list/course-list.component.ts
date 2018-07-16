@@ -11,14 +11,14 @@ import { SearchPipe } from './pipe/search.pipe';
 export class CourseListComponent implements OnInit {
 
   public courseItem : CourseListItem[] = [];
-  constructor(private courseListService: CourseListService) { }
+  constructor(private courseListService: CourseListService, private searchPipe: SearchPipe) { }
 
   ngOnInit() {
     this.courseItem = this.courseListService.getCourseList();
   }
 
   deleteCourseItem(id: number) : void{
-    console.log(id);
+    this.courseListService.deleteItem(id);
   }
 
   search(searchString: string): void{
@@ -26,6 +26,6 @@ export class CourseListComponent implements OnInit {
       //this.ngOnInit();
       this.courseItem = this.courseListService.getCourseList();
     }
-    this.courseItem = new SearchPipe().transform(this.courseItem,searchString);
+    this.courseItem = this.searchPipe.transform(this.courseItem,searchString);
   }
 }

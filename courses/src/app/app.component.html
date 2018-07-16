@@ -1,7 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <app-header></app-header>
-<app-breadcrumps></app-breadcrumps>
-<div class="conteiner">
+<app-breadcrumps *ngIf='logIn'></app-breadcrumps>
+<app-login-page *ngIf='!logIn' (showLogIn) = "show($event)"></app-login-page>
+<div *ngIf='logIn' class="conteiner">
     <app-course-list></app-course-list>
 </div>
 <app-footer></app-footer>

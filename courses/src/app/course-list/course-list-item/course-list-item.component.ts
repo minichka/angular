@@ -26,4 +26,5 @@ export class CourseListItemComponent implements OnInit {
   delete(){
     this.deleteItem.emit(this.courseItem.id);
   }
+  
 }

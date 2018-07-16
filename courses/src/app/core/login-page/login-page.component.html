@@ -1,0 +1,16 @@
+<form>
+  <div class="form-group">
+		<div class="row">
+			<div class="col-sm-4 col-sm-offset-4 login_bg">
+			<h2>Login Panel</h2>
+				<div class="form-group">
+					<input type="text" placeholder="User Email or Name" name="login_user_name" id="login_user_name" class="form-control" [(ngModel)]="username">
+				</div>
+				<div class="form-group">
+					<input type="text" placeholder="User Password" name="login_user_password" id="login_user_password" class="form-control" >
+				</div> 
+				<button type="submit" name="login_btn" id="login_btn" class="btn btn-block login_btn" (click)='createUser($event)'>Enter</button>
+			</div>
+		</div>
+  </div>
+</form>

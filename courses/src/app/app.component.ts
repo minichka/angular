@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthorizationService } from './services/authorization.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular';
+  public logIn: Boolean;
+  ngOnInit() {
+    this.logIn = new AuthorizationService().IsAuthenticated();
+  }
+  
+  show(isAuth: boolean){
+    this.logIn = isAuth;
+  }
+
+
 }
