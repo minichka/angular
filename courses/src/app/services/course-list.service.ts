@@ -10,10 +10,10 @@ export class CourseListService {
     {
       id: 1,
       title: 'test1',
-      creation_date: new Date(2018,0o5,20),
+      creation_date: new Date(2018,0o5,40),
       duration: 40,
       description: 'description1',
-      top_rated: true
+      top_rated: false
     },
     {
       id: 2,
@@ -26,7 +26,7 @@ export class CourseListService {
     {
       id: 3,
       title: 'test3',
-      creation_date: new Date(2018,0o5,9),
+      creation_date: new Date(2018,0o7,9),
       duration: 60,
       description: 'description3',
       top_rated: true

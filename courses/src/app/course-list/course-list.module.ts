@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FormsModule} from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import { CourseListComponent } from './course-list/course-list.component';
 import { CourseListItemComponent } from './course-list-item/course-list-item.component';
 import { SearchComponent } from './search/search.component';
@@ -9,16 +9,38 @@ import { CourseBorderDirective } from './course-list-item/directive/course-board
 import { DurationPipe } from './course-list-item/pipe/duration-pipe.pipe';
 import { SortByDurationPipe } from './course-list/pipe/sort-by-duration.pipe';
 import { SearchPipe } from './course-list/pipe/search.pipe';
+import { ModalComponent } from './course-list-item/modal/modal/modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 
 
 @NgModule({
   imports: [
-    CommonModule,FormsModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule.forRoot(),
+    
   ],
-  declarations: [CourseListComponent, CourseListItemComponent, SearchComponent, PaginationComponent,CourseBorderDirective, DurationPipe, SortByDurationPipe, SearchPipe],
+  declarations: [
+    CourseListComponent,
+    CourseListItemComponent, 
+    SearchComponent, 
+    PaginationComponent,
+    CourseBorderDirective, 
+    DurationPipe, 
+    SortByDurationPipe, 
+    SearchPipe,
+    ModalComponent,
+    
+  ],
+  entryComponents: [ModalComponent],
+
   providers: [SearchPipe],
-  exports: [CourseListComponent]
+  exports: [CourseListComponent],
+  
 })
 export class CourseListModule { }

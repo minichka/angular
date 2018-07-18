@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { AuthorizationService } from '../../services/authorization.service';
+import { User } from '../../model/user';
 
 
 
@@ -11,7 +12,7 @@ import { AuthorizationService } from '../../services/authorization.service';
 export class LoginPageComponent implements OnInit {
 
   @Input() username: string;
-  @Output() showLogIn : EventEmitter<Boolean> = new EventEmitter<Boolean>();
+  @Output() showLogIn : EventEmitter<User> = new EventEmitter<User>();
   constructor(private authService: AuthorizationService) { }
 
   ngOnInit() {
@@ -19,9 +20,8 @@ export class LoginPageComponent implements OnInit {
 
 
   createUser(){
-    console.log('createUser is called');
     this.authService.logIn(this.username);
-    this.showLogIn.emit(this.authService.IsAuthenticated());
+    this.showLogIn.emit(this.authService.getUser());
   }
 
 }

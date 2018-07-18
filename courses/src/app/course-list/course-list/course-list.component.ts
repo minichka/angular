@@ -23,7 +23,6 @@ export class CourseListComponent implements OnInit {
 
   search(searchString: string): void{
     if(!searchString){
-      //this.ngOnInit();
       this.courseItem = this.courseListService.getCourseList();
     }
     this.courseItem = this.searchPipe.transform(this.courseItem,searchString);

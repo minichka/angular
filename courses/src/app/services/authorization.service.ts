@@ -11,13 +11,11 @@ export class AuthorizationService {
   constructor() { }
 
   public logIn(login:string){
-    console.log('logIn is called');
     let user: User = {
       id: this.users.length + 1,
       login: login
     }
     this.users.push(user);
-    console.log(this.users);
   }
 
   public logOut(user: User){
@@ -32,7 +30,11 @@ export class AuthorizationService {
     return this.users.length != 0;
   }
 
-  public GetUserInfo(user: User): String{
+  public getUserInfo(user: User): String{
       return user.login;
+  }
+
+  public getUser(){
+    return this.users[0];
   }
 }
