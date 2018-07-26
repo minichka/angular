@@ -7,14 +7,14 @@
     <div class="title col-lg-7">{{courseItem?.title|uppercase}}<span [ngClass] ="{'glyphicon glyphicon-star':courseItem.top_rated}"></span></div>
     <div class="duration col-lg-2">{{courseItem?.duration | duration}}</div>
     <div class="creation col-lg-2">{{courseItem?.creation_date| date : "MM.dd.yyyy"}}</div>
-    <div class="col-lg-1"><button type="button" class="btn btn-block btn-primary"> Edit </button></div>
+    <div class="col-lg-1"><button type="button" class="btn btn-block btn-primary" (click) = 'edit($event)'> Edit </button></div>
   </div>
   <div class="row">
     <div class="col-lg-11">
       <p class="description">{{courseItem?.description}}</p>
     </div>
     <div class="col-lg-1">
-        <button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#deleteModal" (click) = 'open()'> Delete </button>
+        <button type="button" class="btn btn-block btn-danger" (click) = 'delete($event)'> Delete </button>
     </div>
   </div>
 </div>

@@ -9,12 +9,9 @@ import { CourseBorderDirective } from './course-list-item/directive/course-board
 import { DurationPipe } from './course-list-item/pipe/duration-pipe.pipe';
 import { SortByDurationPipe } from './course-list/pipe/sort-by-duration.pipe';
 import { SearchPipe } from './course-list/pipe/search.pipe';
-import { ModalComponent } from './course-list-item/modal/modal/modal.component';
+import { ModalComponent } from './course-list/modal/modal/modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-
-
-
+import { AddCourseComponent } from './course-list/modal/add-course/add-course.component';
 
 
 @NgModule({
@@ -35,6 +32,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SortByDurationPipe, 
     SearchPipe,
     ModalComponent,
+    AddCourseComponent,
     
   ],
   entryComponents: [ModalComponent],

@@ -19,7 +19,7 @@ export class LoginPageComponent implements OnInit {
   }
 
 
-  createUser(){
+  createUser($event: any){
     this.authService.logIn(this.username);
     this.showLogIn.emit(this.authService.getUser());
   }

@@ -8,7 +8,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalComponent {
 
-  //@Input() name;
-  constructor() { }
+  @Input() name;
+  constructor(public activeModal: NgbActiveModal) { }
 
 }

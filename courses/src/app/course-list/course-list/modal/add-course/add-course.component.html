@@ -1,0 +1,27 @@
+<button type="submit" (click)='show=true;'class="btn btn-primary mb-2" style="float: right;">Add course</button>
+<div *ngIf='show||changeItem != null'> 
+  <div class="form-group">
+    <label for="">Title</label>
+    <input type="" class="form-control" id="title" value="{{changeItem?.title}}" placeholder="Enter title">
+  </div>
+  <div class="form-group">
+    <label for="">Description</label>
+    <input type="" class="form-control" id="exampleInputPassword1" value="{{changeItem?.description}}" placeholder="description">
+  </div>
+  <div class="form-group">
+    <label for="">Date</label>
+    <input type="" class="form-control" id="exampleInputPassword1" value="{{changeItem?.creation_date|date:'MM.dd.yyyy'}}" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="">Duration</label>
+    <input type="" class="form-control" id="exampleInputPassword1" value="{{changeItem?.duration}}" placeholder="Password">
+    <p *ngIf='changeItem != null'>{{changeItem?.duration| duration}}</p>
+  </div>
+  <div class="form-group">
+    <label for="">Authors</label>
+    <input type="" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+
+  <button type="submit" (click)='save();' class="btn btn-primary">Save</button>
+  <button type="submit" (click)='show=false; changeItem=null'class="btn btn-primary">Cancel</button>
+</div>
