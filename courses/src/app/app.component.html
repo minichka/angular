@@ -2,9 +2,10 @@
 <app-header [user] = user (logOutEvent)="logOut($event)"></app-header>
 <app-breadcrumps *ngIf='logIn'></app-breadcrumps>
 <app-login-page *ngIf='!logIn' (showLogIn)="show($event)"></app-login-page>
-<div *ngIf='logIn' class="conteiner">
+<!-- <div *ngIf='logIn' class="conteiner">
     <app-course-list></app-course-list>
-</div>
+</div> -->
+<router-outlet></router-outlet>
 <app-footer></app-footer>
 
 

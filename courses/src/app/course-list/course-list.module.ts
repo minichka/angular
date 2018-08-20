@@ -12,6 +12,7 @@ import { SearchPipe } from './course-list/pipe/search.pipe';
 import { ModalComponent } from './course-list/modal/modal/modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddCourseComponent } from './course-list/modal/add-course/add-course.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AddCourseComponent } from './course-list/modal/add-course/add-course.co
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
     NgbModule.forRoot(),
     
   ],

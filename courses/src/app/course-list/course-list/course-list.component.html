@@ -1,4 +1,5 @@
-<app-add-course [changeItem] = changeItem></app-add-course>
+<!-- <app-add-course [changeItem] = changeItem></app-add-course> -->
+<a class="btn btn-primary" routerLink = "new" > New </a>
 <div class="container">
     <app-search (searchItems) = 'search($event)'></app-search>
     <app-course-list-item *ngFor="let item of courseItem|sortByDuration" 
