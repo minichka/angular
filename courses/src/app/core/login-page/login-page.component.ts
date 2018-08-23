@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { AuthorizationService } from '../../services/authorization.service';
 import { User } from '../../model/user';
+import { Router } from '@angular/router';
 
 
 
@@ -13,7 +14,7 @@ export class LoginPageComponent implements OnInit {
 
   @Input() username: string;
   @Output() showLogIn : EventEmitter<User> = new EventEmitter<User>();
-  constructor(private authService: AuthorizationService) { }
+  constructor(private authService: AuthorizationService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,6 +23,8 @@ export class LoginPageComponent implements OnInit {
   createUser($event: any){
     this.authService.logIn(this.username);
     this.showLogIn.emit(this.authService.getUser());
+    this.router.navigate(['/courses']);
+
   }
 
 }

@@ -28,9 +28,9 @@ export class CourseListComponent implements OnInit {
     //this.courseListService.deleteItem(id);
   }
 
-  editCourseItem(item: CourseListItem){
-    this.changeItem = item;
-  }
+  // editCourseItem(item: CourseListItem){
+  //   this.changeItem = item;
+  // }
   search(searchString: string): void{
     if(!searchString){
       this.courseItem = this.courseListService.getCourseList();

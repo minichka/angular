@@ -26,7 +26,7 @@ export class AuthorizationService {
     });
   }
 
-  public IsAuthenticated(): Boolean{
+  public IsAuthenticated(): boolean{
     return this.users.length != 0;
   }
 

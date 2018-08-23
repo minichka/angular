@@ -3,6 +3,7 @@ import {FormsModule} from '@angular/forms'
 import { CourseListItem } from '../../model/course-list-item.model';
 import { CourseBorderDirective } from './directive/course-boarder.directive';
 import { DurationPipe } from './pipe/duration-pipe.pipe';
+import { Router } from '@angular/router';
 
 
 
@@ -24,7 +25,7 @@ export class CourseListItemComponent implements OnInit {
   @Output() deleteItem : EventEmitter<Number> = new EventEmitter<Number>();
   @Output() editItem: EventEmitter<CourseListItem> = new EventEmitter<CourseListItem>();
   
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -35,6 +36,7 @@ export class CourseListItemComponent implements OnInit {
   }
   
   edit($event: any){
-    this.editItem.emit(this.courseItem);
+    //this.editItem.emit(this.courseItem);
+    this.router.navigate(['courses',2]);
   }
 }

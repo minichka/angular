@@ -70,7 +70,7 @@ export class CourseListService {
     let item: CourseListItem;
     this.courseList.forEach(function (el) {
       if(el.id == id){
-        item == el;
+        item = el;
       }
     });
     return item;
