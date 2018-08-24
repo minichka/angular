@@ -13,17 +13,23 @@ import { Router } from '@angular/router';
 export class LoginPageComponent implements OnInit {
 
   @Input() username: string;
+  @Input() password: string;
   @Output() showLogIn : EventEmitter<User> = new EventEmitter<User>();
   constructor(private authService: AuthorizationService, private router: Router) { }
 
   ngOnInit() {
+  
   }
 
 
   createUser($event: any){
-    this.authService.logIn(this.username);
-    this.showLogIn.emit(this.authService.getUser());
-    this.router.navigate(['/courses']);
+    console.log(localStorage.getItem('currentUser'));
+    this.authService.logIn(this.username,this.password).subscribe(
+      user => {
+        console.log(localStorage.getItem('currentUser'));
+        this.router.navigate(['/courses']);
+      }
+    )
 
   }
 

@@ -13,10 +13,12 @@ export class IsLoggedInGuard implements CanActivate, CanActivateChild  {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.authService.IsAuthenticated();
+    //return this.authService.IsAuthenticated();
+    return localStorage.getItem('currentUser') != null;
   }
 
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.authService.IsAuthenticated();
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<boolean> | boolean {
+    //return this.authService.IsAuthenticated();
+    return localStorage.getItem('currentUser') != null;
   }  
 }

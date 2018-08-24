@@ -20,7 +20,7 @@ export class AddCourseComponent implements OnInit {
   ngOnInit() {
    this.rote.params.subscribe((data)=>{
      if(data['id'] != 'new'){
-      this.changeItem = this.courseListService.getItemByID(data['id']);
+      //this.changeItem = this.courseListService.getItemByID(data['id']);
      }
    });
   }

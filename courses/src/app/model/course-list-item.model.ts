@@ -1,8 +1,17 @@
 export interface CourseListItem {
     id: number;
-    title: string;
-    creation_date: Date;
-    duration: number;
+    name: string;
     description: string;
-    top_rated: Boolean;
+    isTopRated: Boolean;
+    date: Date;
+    authors: [
+        {
+            id: number,
+            firstName: string,
+            lastName: string
+        }
+    ]
+    length: number;
+    
+    
 }

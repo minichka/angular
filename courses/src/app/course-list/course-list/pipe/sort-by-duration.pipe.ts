@@ -8,7 +8,7 @@ export class SortByDurationPipe implements PipeTransform {
 
   transform(value: CourseListItem[], args?: any): CourseListItem[] {
     return value.sort(function(a: CourseListItem, b:CourseListItem) {
-      return +new Date(b.creation_date) - +new Date(a.creation_date);
+      return +new Date(b.date) - +new Date(a.date);
   });
   }
 

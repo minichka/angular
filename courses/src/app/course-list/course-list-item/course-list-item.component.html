@@ -4,9 +4,9 @@
       appCourseBorder [creationDate] = "courseItem?.creation_date"
       [ngClass] ="{'topRate':courseItem.top_rated}">
   <div class="row">
-    <div class="title col-lg-7">{{courseItem?.title|uppercase}}<span [ngClass] ="{'glyphicon glyphicon-star':courseItem.top_rated}"></span></div>
-    <div class="duration col-lg-2">{{courseItem?.duration | duration}}</div>
-    <div class="creation col-lg-2">{{courseItem?.creation_date| date : "MM.dd.yyyy"}}</div>
+    <div class="title col-lg-7">{{courseItem?.name|uppercase}}<span [ngClass] ="{'glyphicon glyphicon-star':courseItem.top_rated}"></span></div>
+    <div class="duration col-lg-2">{{courseItem?.length | duration}}</div>
+    <div class="creation col-lg-2">{{courseItem?.date| date : "MM.dd.yyyy"}}</div>
     <div class="col-lg-1"><button type="button" class="btn btn-block btn-primary" (click) = 'edit($event)'> Edit </button></div>
   </div>
   <div class="row">

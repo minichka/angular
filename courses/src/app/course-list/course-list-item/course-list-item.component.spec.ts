@@ -29,7 +29,7 @@ describe('CourseListItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CourseListItemComponent);
     component = fixture.componentInstance;
-    component.courseItem = expectedDeletedItem;
+    //component.courseItem = expectedDeletedItem;
     fixture.detectChanges();
   });
   

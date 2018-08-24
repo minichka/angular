@@ -4,11 +4,17 @@ import { CourseListComponent } from './course-list/course-list/course-list.compo
 import { AddCourseComponent } from './course-list/course-list/modal/add-course/add-course.component';
 import { NoContentComponent } from './core/no-content/no-content.component';
 import { IsLoggedInGuard } from './guard/is-logged-in.guard';
+import { LoginPageComponent } from './core/login-page/login-page.component';
+import { AuthorizationService } from './services/authorization.service';
 
 const rotes: Routes = [
   { path: '',
-    redirectTo: '/courses', 
+    redirectTo: localStorage.getItem('currentUser') != null ? '/courses' : '/login', 
     pathMatch: 'full' 
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent
   },
   { path: 'courses', 
     component: CourseListComponent, 
@@ -25,4 +31,6 @@ const rotes: Routes = [
   exports: [RouterModule]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule {
+  constructor(private authService: AuthorizationService){}
+}

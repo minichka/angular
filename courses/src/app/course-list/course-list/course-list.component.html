@@ -1,12 +1,25 @@
 <!-- <app-add-course [changeItem] = changeItem></app-add-course> -->
-<a class="btn btn-primary" routerLink = "new" > New </a>
+<a class="btn btn-primary" routerLink = "new" style="float: right;"> New </a>
+<div class="col">
+    <div class="form-group">
+      <label class="radio-inline">
+        <input type="radio" name="optradio" value="10" [(ngModel)]="countToLoad">10 items</label>
+    </div>
+  </div>
+  <div class="col">
+    <div class="form-group">
+      <label class="radio-inline">
+        <input type="radio" name="optradio" value="25" [(ngModel)]="countToLoad">25 items</label>
+    </div>
+  </div>
 <div class="container">
     <app-search (searchItems) = 'search($event)'></app-search>
+    <app-pagination></app-pagination>
     <app-course-list-item *ngFor="let item of courseItem|sortByDuration" 
                           [courseItem] = 'item'
                           (deleteItem) = 'deleteCourseItem($event)'
                           (editItem) = 'editCourseItem($event)'>
     </app-course-list-item>
     <div *ngIf="courseItem.length == 0">No data. Feel free to add new course</div>
-    <app-pagination></app-pagination>
+    
 </div>

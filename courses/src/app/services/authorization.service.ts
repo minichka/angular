@@ -1,5 +1,19 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+
+const BASE_URL = 'http://localhost:3004/users';
+const LOGIN_URL = 'http://localhost:3004/auth/login';
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': 'my-auth-token'
+  })
+
+}
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +22,22 @@ export class AuthorizationService {
 
   private users: User[] = [];
     
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  public logIn(login:string){
-    let user: User = {
-      id: this.users.length + 1,
-      login: login
+  public logIn(login:string, password: string) : Observable<User>{
+  
+    return this.http.post<any>(`${LOGIN_URL}`, {login,password}).pipe( map (data => {
+      if(data.user && data.token){
+        localStorage.setItem('currentUser', JSON.stringify(data.user));
+      }
+      return data.user;
+    }))
+
     }
-    this.users.push(user);
+
+  public getUsers(): Observable<User[]>{
+    return this.http.get<User[]>(`${BASE_URL}`);
+    
   }
 
   public logOut(user: User){
@@ -26,8 +48,14 @@ export class AuthorizationService {
     });
   }
 
-  public IsAuthenticated(): boolean{
-    return this.users.length != 0;
+  // public IsAuthenticated(user): Observable<any> {
+  //   //return localStorage.getItem('currentUser') != '';
+  //   return this.http.post<any>(`${LOGIN_URL}/auth/userinfo`,user).pipe(map(data => {
+  //     console.log(data);
+  //   }))
+  // }
+  public IsAuthenticated(): Observable<boolean> | boolean {
+    return localStorage.getItem('currentUser') != '';
   }
 
   public getUserInfo(user: User): String{

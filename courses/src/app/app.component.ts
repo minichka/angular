@@ -8,24 +8,30 @@ import { User } from './model/user';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  constructor(private authService: AuthorizationService){
+
+  }
+
   title = 'angular';
-  logIn: Boolean;
   user: User;
   ngOnInit() {
-    this.logIn = new AuthorizationService().IsAuthenticated();
+    localStorage.clear();
+    console.log(localStorage.getItem('currentUser'));
   }
   
   show(user: User){
     if(user){
-      this.logIn = true;
       this.user = user;
     }  
   }
 
   logOut(user:User){
-    this.logIn = false;
     this.user = null;
   }
 
+  ngOnDestroy(){
+    localStorage.clear();
+  }
 
 }
