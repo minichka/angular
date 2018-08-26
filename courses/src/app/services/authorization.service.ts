@@ -25,9 +25,11 @@ export class AuthorizationService {
   constructor(private http: HttpClient) { }
 
   public logIn(login:string, password: string) : Observable<User>{
-  
+    
+    console.log('alalal');
     return this.http.post<any>(`${LOGIN_URL}`, {login,password}).pipe( map (data => {
       if(data.user && data.token){
+        console.log(data);
         localStorage.setItem('currentUser', JSON.stringify(data.user));
       }
       return data.user;

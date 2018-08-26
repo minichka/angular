@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, SimpleChanges} from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy} from '@angular/core';
 import { CourseListItem } from '../../model/course-list-item.model';
 import { CourseListService } from '../../services/course-list.service';
 import { SearchPipe } from './pipe/search.pipe';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from './modal/modal/modal.component';
+import { Subscription } from 'rxjs';
 
 
 const DEFTAULT_LOAD_COUNT = '10';
@@ -12,40 +13,41 @@ const DEFTAULT_LOAD_COUNT = '10';
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.css']
 })
-export class CourseListComponent implements OnInit {
+export class CourseListComponent implements OnInit, OnDestroy{
 
   @Input() countToLoad : string = DEFTAULT_LOAD_COUNT;
   public courseItem : CourseListItem[] = [];
-  public addCourse : Boolean = false;
-  public changeItem: CourseListItem = null;
+  private getCourseListWithParams: Subscription;
   constructor(private courseListService: CourseListService, private searchPipe: SearchPipe,private modalService: NgbModal) { }
 
   ngOnInit() {
-    
-    console.log()
-    this.courseListService.getCourseList(this.countToLoad).subscribe(courses => {
+    console.log('courseList init');
+    this.courseListService.getCourseList(this.countToLoad,'').subscribe(courses => {
       this.courseItem = courses;
     })
   }
 
-
+  change($event){
+    this.getCourseListWithParams = this.courseListService.getCourseList(this.countToLoad,'').subscribe(courses => {
+      this.courseItem = courses;
+    })
+  }
   deleteCourseItem(id: number) : void{
-    const modalRef = this.modalService.open(ModalComponent);
-    //this.courseListService.deleteItem(id);
+    this.courseListService.deleteItem(id).subscribe(course => {
+      console.log('deleted');
+    });
   }
 
   // editCourseItem(item: CourseListItem){
   //   this.changeItem = item;
   // }
   search(searchString: string): void{
-    // if(!searchString){
-    //   this.courseItem = this.courseListService.getCourseList();
-    // }
-    this.courseItem = this.searchPipe.transform(this.courseItem,searchString);
+    this.getCourseListWithParams = this.courseListService.getCourseList(this.countToLoad,searchString).subscribe(courses =>{
+      this.courseItem = courses;
+    });
   }
 
-  open() {
-    
-    //modalRef.componentInstance.name = 'World';
+  ngOnDestroy(){
+    //this.getCourseListWithParams.unsubscribe();
   }
 }

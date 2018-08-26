@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CourseListItem } from '../../../../model/course-list-item.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { nextTick } from 'q';
 import { CourseListService } from '../../../../services/course-list.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-add-course',
@@ -11,22 +11,34 @@ import { CourseListService } from '../../../../services/course-list.service';
 })
 export class AddCourseComponent implements OnInit {
 
-  public show: Boolean = false;
-  public changeItem: CourseListItem;
-  constructor(private router: Router, private rote: ActivatedRoute, private courseListService: CourseListService) { }
+  newCourseForm = new FormGroup({
+    name: new FormControl(''),
+    description: new FormControl(''),
+    date: new FormControl(''),
+    length: new FormControl('')
+  });
+  //@Output() createItem : EventEmitter<CourseListItem> = new EventEmitter<CourseListItem>();
+  private item: CourseListItem;
+  constructor(private router: Router, private courseListService: CourseListService) { }
 
-
-  //@Input() changeItem: CourseListItem;
   ngOnInit() {
-   this.rote.params.subscribe((data)=>{
-     if(data['id'] != 'new'){
-      //this.changeItem = this.courseListService.getItemByID(data['id']);
-     }
-   });
+   
   }
 
-  save() : void{
-    console.log('add new');
+  onSubmit() : void{
+    console.log(this.newCourseForm.value);
+    this.item = {
+      id: this.newCourseForm.value.id,
+      name: this.newCourseForm.value.name,
+      description: this.newCourseForm.value.description,
+      date: this.newCourseForm.value.date,
+      length: this.newCourseForm.value.length,
+      isTopRated: false,
+      authors: null
+    }
+    this.courseListService.createCourse(this.item).subscribe( course =>
+      console.log('alalal')
+    );
     this.router.navigate(['/courses']);
   }
   cancel(){

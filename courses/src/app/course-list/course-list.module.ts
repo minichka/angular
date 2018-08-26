@@ -13,6 +13,7 @@ import { ModalComponent } from './course-list/modal/modal/modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddCourseComponent } from './course-list/modal/add-course/add-course.component';
 import { RouterModule } from '@angular/router';
+import { EditComponentComponent } from './course-list/modal/edit-component/edit-component.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { RouterModule } from '@angular/router';
     SearchPipe,
     ModalComponent,
     AddCourseComponent,
+    EditComponentComponent,
     
   ],
   entryComponents: [ModalComponent],

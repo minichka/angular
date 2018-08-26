@@ -37,6 +37,6 @@ export class CourseListItemComponent implements OnInit {
   
   edit($event: any){
     //this.editItem.emit(this.courseItem);
-    this.router.navigate(['courses',2]);
+    this.router.navigate(['courses',this.courseItem.id]);
   }
 }

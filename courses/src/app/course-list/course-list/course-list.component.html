@@ -1,15 +1,14 @@
-<!-- <app-add-course [changeItem] = changeItem></app-add-course> -->
 <a class="btn btn-primary" routerLink = "new" style="float: right;"> New </a>
 <div class="col">
     <div class="form-group">
       <label class="radio-inline">
-        <input type="radio" name="optradio" value="10" [(ngModel)]="countToLoad">10 items</label>
+        <input type="radio" name="optradio" value="10" [(ngModel)]="countToLoad" (change)='change($event);'>10 items</label>
     </div>
   </div>
   <div class="col">
     <div class="form-group">
       <label class="radio-inline">
-        <input type="radio" name="optradio" value="25" [(ngModel)]="countToLoad">25 items</label>
+        <input type="radio" name="optradio" value="25" [(ngModel)]="countToLoad" (change)='change($event);'>25 items</label>
     </div>
   </div>
 <div class="container">
