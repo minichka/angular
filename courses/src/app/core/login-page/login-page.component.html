@@ -1,15 +1,25 @@
-<form>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
 		<div class="row">
 			<div class="col-sm-4 col-sm-offset-4 login_bg">
 			<h2>Login Panel</h2>
 				<div class="form-group">
-					<input type="text" placeholder="User Email or Name" name="login_user_name" id="login_user_name" class="form-control" [(ngModel)]="username">
+					<input type="text" 
+								 placeholder="User Email or Name" 
+								 name="login_user_name" 
+								 id="login_user_name" 
+								 class="form-control"
+								 formControlName="login">
 				</div>
 				<div class="form-group">
-					<input type="text" placeholder="User Password" name="login_user_password" id="login_user_password" class="form-control" [(ngModel)]="password">
+					<input type="text" 
+								 placeholder="User Password" 
+								 name="login_user_password" 
+								 id="login_user_password" 
+								 class="form-control" 
+								 formControlName="password">
 				</div> 
-				<button type="submit" name="login_btn" id="login_btn" class="btn btn-block login_btn" (click)='createUser($event)'>Enter</button>
+				<button type="submit" name="login_btn" id="login_btn" class="btn btn-block login_btn">Enter</button>
 			</div>
 		</div>
   </div>

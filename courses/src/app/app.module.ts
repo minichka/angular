@@ -6,6 +6,8 @@ import { CourseListModule } from './course-list/course-list.module';
 import { AppRoutingModule } from './/app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interseptor/authInterceptor';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/effects/auth.effects';
 
 
 
@@ -19,6 +21,7 @@ import { AuthInterceptor } from './interseptor/authInterceptor';
     CoreModule,
     CourseListModule,
     AppRoutingModule,
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

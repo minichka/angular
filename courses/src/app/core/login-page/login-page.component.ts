@@ -2,6 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { AuthorizationService } from '../../services/authorization.service';
 import { User } from '../../model/user';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { FormGroup, FormControl } from '@angular/forms';
+import { LogIn } from '../../store/user.actions';
 
 
 
@@ -11,22 +14,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
-
-  @Input() username: string;
-  @Input() password: string;
+  loginForm = new FormGroup({
+    login: new FormControl(''),
+    password: new FormControl('')
+  });
   @Output() showLogIn : EventEmitter<User> = new EventEmitter<User>();
-  constructor(private authService: AuthorizationService, private router: Router) { }
+  constructor(
+    private authService: AuthorizationService, 
+    private router: Router,
+    private store: Store<User>
+  ) { }
 
   ngOnInit() {
-  
   }
-  createUser($event: any){
-    this.authService.logIn(this.username,this.password).subscribe(
-      user => {
-        this.router.navigate(['/courses']);
-      }
-    )
-
+ 
+  // createUser($event: any){
+  //   this.authService.logIn(this.username,this.password).subscribe(
+  //     user => {
+  //       this.router.navigate(['/courses']);
+  //     }
+  //   )
+  // }
+  onSubmit(): void{
+    const payload = {
+      login: this.loginForm.value.login,
+      password: this.loginForm.value.password
+    };
+    this.store.dispatch(new LogIn(payload));
   }
 
 }
