@@ -1,9 +1,9 @@
 <div class="form-group">
     <form class="form-inline">
         <div class="form-group mx-sm-3 mb-2">
-          <input  [(ngModel)] = "searchString" type="search" class="form-control" id="search" placeholder="Search" name= "search">
+          <input  id='search-box' [formControl]="search" type="search" class="form-control" id="search" placeholder="Search" name= "search">
         </div>
-        <button (click) = 'search($event)' type="submit" class="search btn btn-primary mb-2">Search</button>
+        <!-- <button (click) = 'search($event)' type="submit" class="search btn btn-primary mb-2">Search</button> -->
       </form>
 </div>
 

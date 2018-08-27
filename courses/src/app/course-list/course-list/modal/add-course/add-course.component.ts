@@ -3,6 +3,8 @@ import { CourseListItem } from '../../../../model/course-list-item.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CourseListService } from '../../../../services/course-list.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { LoaderService } from '../../../../services/loader.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-course',
@@ -17,15 +19,17 @@ export class AddCourseComponent implements OnInit {
     date: new FormControl(''),
     length: new FormControl('')
   });
-  //@Output() createItem : EventEmitter<CourseListItem> = new EventEmitter<CourseListItem>();
   private item: CourseListItem;
-  constructor(private router: Router, private courseListService: CourseListService) { }
+  constructor(private router: Router, 
+              private courseListService: CourseListService, 
+              private loaderService: LoaderService) { }
 
   ngOnInit() {
    
   }
 
   onSubmit() : void{
+    this.loaderService.show();
     console.log(this.newCourseForm.value);
     this.item = {
       id: this.newCourseForm.value.id,
@@ -36,7 +40,9 @@ export class AddCourseComponent implements OnInit {
       isTopRated: false,
       authors: null
     }
-    this.courseListService.createCourse(this.item).subscribe( course =>
+    this.courseListService.createCourse(this.item)
+    .pipe(finalize(() => this.loaderService.hide()))
+    .subscribe( course =>
       console.log('alalal')
     );
     this.router.navigate(['/courses']);

@@ -20,13 +20,9 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
   
   }
-
-
   createUser($event: any){
-    console.log(localStorage.getItem('currentUser'));
     this.authService.logIn(this.username,this.password).subscribe(
       user => {
-        console.log(localStorage.getItem('currentUser'));
         this.router.navigate(['/courses']);
       }
     )

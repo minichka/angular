@@ -60,8 +60,8 @@ export class AuthorizationService {
     return localStorage.getItem('currentUser') != '';
   }
 
-  public getUserInfo(user: User): String{
-      return user.login;
+  public getUserInfo(user: User): Observable<String> |String{
+      return localStorage.getItem('currentUser');
   }
 
   public getUser(){
