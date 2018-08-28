@@ -8,6 +8,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interseptor/authInterceptor';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/effects/auth.effects';
+import { reducers } from './store/app.state';
+import { StoreModule } from '@ngrx/store';
 
 
 
@@ -21,6 +23,7 @@ import { AuthEffects } from './store/effects/auth.effects';
     CoreModule,
     CourseListModule,
     AppRoutingModule,
+    StoreModule.forRoot(reducers,{}),
     EffectsModule.forRoot([AuthEffects])
   ],
   providers: [
