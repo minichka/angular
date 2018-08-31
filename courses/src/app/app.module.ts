@@ -10,6 +10,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/effects/auth.effects';
 import { reducers } from './store/app.state';
 import { StoreModule } from '@ngrx/store';
+import { CoursesEffects} from './store/effects/course.effects';
 
 
 
@@ -24,7 +25,7 @@ import { StoreModule } from '@ngrx/store';
     CourseListModule,
     AppRoutingModule,
     StoreModule.forRoot(reducers,{}),
-    EffectsModule.forRoot([AuthEffects])
+    EffectsModule.forRoot([AuthEffects,CoursesEffects])
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}

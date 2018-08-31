@@ -5,14 +5,16 @@ import { FooterComponent } from './footer/footer.component';
 import { LogoComponent } from './header/logo/logo.component';
 import { BreadcrumpsComponent } from './breadcrumps/breadcrumps.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoContentComponent } from './no-content/no-content.component';
 import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
   imports: [
-    CommonModule, FormsModule
+    CommonModule, 
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [HeaderComponent, FooterComponent, LogoComponent, BreadcrumpsComponent, LoginPageComponent, NoContentComponent, LoaderComponent,],
   exports: [HeaderComponent, FooterComponent, BreadcrumpsComponent,LoginPageComponent, LoaderComponent]

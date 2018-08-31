@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges, OnDestroy} from '@angular/core';
 import { CourseListItem } from '../../model/course-list-item.model';
 import { CourseListService } from '../../services/course-list.service';
-import { SearchPipe } from './pipe/search.pipe';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from './modal/modal/modal.component';
-import { Subscription, Subject } from 'rxjs';
+import { Subscription, Subject, Observable } from 'rxjs';
 import { LoaderService } from '../../services/loader.service';
 import { finalize } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { selectCourseState } from '../../store/app.state';
+import { CoursesLoadWithPagintion } from '../../store/actions/course.actions';
 
 
 const DEFTAULT_LOAD_COUNT = '10';
@@ -17,16 +17,26 @@ const DEFTAULT_LOAD_COUNT = '10';
 })
 export class CourseListComponent implements OnInit, OnDestroy{
 
+  getState: Observable<any>;
   @Input() countToLoad : string = DEFTAULT_LOAD_COUNT;
   public courseItem : CourseListItem[] = [];
   private getCourseListWithParams: Subscription;
   constructor(private courseListService: CourseListService, 
-              private searchPipe: SearchPipe,
-              private modalService: NgbModal,
-              private loaderService: LoaderService) { }
+              private loaderService: LoaderService,
+              private store: Store<CourseListItem>
+             ) { 
+               this.getState = this.store.select(selectCourseState);
+             }
 
   ngOnInit() {
-    console.log('courseList init');
+    // let payload = {
+    //   count: this.countToLoad,
+    //   search: ''
+    // }
+    // this.store.dispatch(new CoursesLoadWithPagintion(payload));
+    // this.getState.subscribe(state => {
+    //   this.courseItem = state.courses;
+    // })
     this.loaderService.show();
     this.courseListService.getCourseList(this.countToLoad,'')
     .pipe(finalize(() => this.loaderService.hide()))
@@ -34,6 +44,7 @@ export class CourseListComponent implements OnInit, OnDestroy{
       this.courseItem = courses;
     }
   )
+  
   }
 
   change($event){

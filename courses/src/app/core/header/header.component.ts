@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import {AppState, selectAuthState } from '../../store/app.state'
+import { LogOut } from '../../store/actions/auth.actions';
 import { User } from '../../model/user';
-import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
   selector: 'app-header',
@@ -9,16 +12,24 @@ import { AuthorizationService } from '../../services/authorization.service';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() user: User;
-  @Output() logOutEvent: EventEmitter<User>  = new EventEmitter<User>();
-  constructor(private authService: AuthorizationService) { }
+  getState: Observable<any>;
+  public isAuthenticated: false;
+  public user: User = null;
+
+  constructor(private store: Store<AppState>) { 
+    this.getState = this.store.select(selectAuthState);
+  }
 
   ngOnInit() {
-    
+    this.getState.subscribe(state => {
+      this.isAuthenticated = state.isAuthenticated;
+      this.user = state.user;
+    })
   }
 
   logOut(user){
-    this.authService.logOut(user);
-    this.logOutEvent.emit(user);
+    // this.authService.logOut(user);
+    // this.logOutEvent.emit(user);
+    this.store.dispatch(new LogOut);
   }
 }

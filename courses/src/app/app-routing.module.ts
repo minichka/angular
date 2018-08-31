@@ -10,7 +10,7 @@ import { EditComponentComponent } from './course-list/course-list/modal/edit-com
 
 const rotes: Routes = [
   { path: '',
-    redirectTo: localStorage.getItem('currentUser') != null ? '/courses' : '/login', 
+    redirectTo: '/courses', 
     pathMatch: 'full' 
   },
   {

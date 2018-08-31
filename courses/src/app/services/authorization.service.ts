@@ -50,14 +50,9 @@ export class AuthorizationService {
     });
   }
 
-  // public IsAuthenticated(user): Observable<any> {
-  //   //return localStorage.getItem('currentUser') != '';
-  //   return this.http.post<any>(`${LOGIN_URL}/auth/userinfo`,user).pipe(map(data => {
-  //     console.log(data);
-  //   }))
-  // }
   public IsAuthenticated(): Observable<boolean> | boolean {
-    return localStorage.getItem('currentUser') != '';
+    //console.log(localStorage.getItem('token'));
+    return localStorage.getItem('token') != null;
   }
 
   public getUserInfo(user: User): Observable<String> |String{
