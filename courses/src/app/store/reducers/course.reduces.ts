@@ -17,8 +17,14 @@ export function reducer(state: State = initialState, action: All) {
         case CourseActionTypes.COURSES_LOAD_PAGINATION: {
             console.log(action.payload);
             return {
+                ...state
+            }
+        }
+
+        case CourseActionTypes.COURSES_LOAD_SUCCESS: {
+            return {
                 ...state,
-                courses : action.payload
+                courses: action.payload
             }
         }
 

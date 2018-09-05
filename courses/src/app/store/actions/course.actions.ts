@@ -40,9 +40,11 @@ export class CourseDelete implements Action{
 
 export class CourseLoadSuccess implements Action{
     readonly type = CourseActionTypes.COURSES_LOAD_SUCCESS;
+    constructor(public payload: any){}
 }
 export type All = CoursesLoadALL 
                 | CoursesLoadWithPagintion 
                 | CourseCreate 
                 | CoursesUpdate
-                | CourseDelete;
+                | CourseDelete
+                | CourseLoadSuccess;

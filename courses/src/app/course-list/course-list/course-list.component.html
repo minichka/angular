@@ -14,7 +14,7 @@
 <div class="container">
     <app-search (searchItems) = 'search($event)'></app-search>
     <app-pagination></app-pagination>
-    <app-course-list-item *ngFor="let item of courseItem|sortByDuration" 
+    <app-course-list-item *ngFor="let item of courseItem" 
                           [courseItem] = 'item'
                           (deleteItem) = 'deleteCourseItem($event)'
                           (editItem) = 'editCourseItem($event)'>
