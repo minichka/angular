@@ -7,9 +7,8 @@ export enum CourseActionTypes {
     COURSE_UPDATE = '[Course] Update',
     COURSE_DELETE = '[Course] Delete',
     COURSES_LOAD_SUCCESS = '[Courses] Load Success',
-    COURSES_LOAD_FAILURE = '[Courses] Load Success',
-
-    
+    COURSES_LOAD_FAILURE = '[Courses] Load Failure',
+    COURSES_CREATE_SUCCESS = '[Courses] Load Success'
 }
 
 export class CoursesLoadALL implements Action {
@@ -25,26 +24,34 @@ export class CoursesLoadWithPagintion implements Action{
 
 export class CourseCreate implements Action{
     readonly type = CourseActionTypes.COURSE_CREATE;
-    constructor(payload: any){}
+    constructor(public payload: any){
+        console.log('create course');
+    }
+}
+
+export class CourseCreateSuccess implements Action{
+    readonly type = CourseActionTypes.COURSES_CREATE_SUCCESS;
+    constructor(public payload: any){}
 }
 
 export class CoursesUpdate implements Action{
     readonly type = CourseActionTypes.COURSE_UPDATE;
-    constructor(payload: any){}
+    constructor(public payload: any){}
 }
 
 export class CourseDelete implements Action{
     readonly type = CourseActionTypes.COURSE_DELETE;
-    constructor(payload: any){}
+    constructor(public payload: any){}
 }
 
 export class CourseLoadSuccess implements Action{
     readonly type = CourseActionTypes.COURSES_LOAD_SUCCESS;
     constructor(public payload: any){}
 }
-export type All = CoursesLoadALL 
+export type All = CoursesLoadALL
                 | CoursesLoadWithPagintion 
                 | CourseCreate 
                 | CoursesUpdate
                 | CourseDelete
-                | CourseLoadSuccess;
+                | CourseLoadSuccess
+                | CourseCreateSuccess;

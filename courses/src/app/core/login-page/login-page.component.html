@@ -10,6 +10,9 @@
 								 id="login_user_name" 
 								 class="form-control"
 								 formControlName="login">
+					<div *ngIf="submitted && f.login.errors" class="text-danger">
+						<div *ngIf="f.login.errors.required">Login is required</div>
+					</div>
 				</div>
 				<div class="form-group">
 					<input type="text" 
@@ -18,6 +21,9 @@
 								 id="login_user_password" 
 								 class="form-control" 
 								 formControlName="password">
+					<div *ngIf="submitted && f.password.errors" class="text-danger">
+						<div *ngIf="f.password.errors.required">Password is required</div>
+					</div>
 				</div> 
 				<button type="submit" name="login_btn" id="login_btn" class="btn btn-block login_btn">Enter</button>
 			</div>

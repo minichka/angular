@@ -14,22 +14,21 @@ export const initialState: State = {
 
 export function reducer(state: State = initialState, action: All) {
     switch(action.type){
-        case CourseActionTypes.COURSES_LOAD_PAGINATION: {
-            console.log(action.payload);
-            return {
-                ...state
-            }
-        }
 
         case CourseActionTypes.COURSES_LOAD_SUCCESS: {
+            console.log(action.payload)
             return {
                 ...state,
                 courses: action.payload
             }
         }
 
-        case CourseActionTypes.COURSE_CREATE: {
-
+        case CourseActionTypes.COURSES_CREATE_SUCCESS: {
+            console.log(action.payload.course);
+            return {
+                ...state,
+                courses: [...state.courses, state.courses.push(action.payload.course)]
+            }
         }
 
         case CourseActionTypes.COURSE_UPDATE: {
@@ -37,7 +36,11 @@ export function reducer(state: State = initialState, action: All) {
         }
 
         case CourseActionTypes.COURSE_DELETE: {
-
+            console.log(action.payload.id);
+            return Object.assign({}, state, {
+                courses: state.courses.filter(t => t.id !== action.payload.id),
+            
+            })
         }
 
         default :{

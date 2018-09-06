@@ -1,29 +1,3 @@
-<!-- <div>
-  <div class="form-group">
-    <label for="">Title</label>
-    <input type="" class="form-control" id="title" value="{{changeItem?.name}}" placeholder="Enter title">
-  </div>
-  <div class="form-group">
-    <label for="">Description</label>
-    <input type="" class="form-control" id="exampleInputPassword1" value="{{changeItem?.description}}" placeholder="description">
-  </div>
-  <div class="form-group">
-    <label for="">Date</label>
-    <input type="" class="form-control" id="exampleInputPassword1" value="{{changeItem?.date|date:'MM.dd.yyyy'}}" placeholder="Password">
-  </div>
-  <div class="form-group">
-    <label for="">Duration</label>
-    <input type="" class="form-control" id="exampleInputPassword1" value="{{changeItem?.length}}" placeholder="Password">
-    <p *ngIf='changeItem != null'>{{changeItem?.length| duration}}</p>
-  </div>
-  <div class="form-group">
-    <label for="">Authors</label>
-    <input type="" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-
-  <button type="submit" (click)='editItem();' class="btn btn-primary">Save</button>
-  <button type="submit" (click)='cancel(); changeItem=null'class="btn btn-primary">Cancel</button>
-</div> -->
 <form [formGroup]="editCourseForm" (ngSubmit)="onSubmit()">
     <input class="form-control" type="hidden" value="{{changeItem?.id}}" formControlName="name" placeholder="Enter title">
     <div>
