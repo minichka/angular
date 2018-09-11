@@ -1,0 +1,11 @@
+<div class='form-group'>
+  <label>Author</label>
+  <input (keyup)="search()" class="form-control" type="text" placeholder="Enter author" [(ngModel)]='name'>
+  <!-- <div *ngIf="f.length.invalid && f.length.touched && f.length.errors" class="text-danger">
+    <div *ngIf="f.length.errors.required">Length is required</div>
+    <div *ngIf="f.length.errors.custom">Enter the number</div>
+  </div> -->
+  <div id="searchresult" *ngFor="let author of authors" (click)="authorSelected(author)">
+    {{author.name}}
+</div>
+</div> 

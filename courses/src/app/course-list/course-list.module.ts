@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddCourseComponent } from './course-list/modal/add-course/add-course.component';
 import { RouterModule } from '@angular/router';
 import { EditComponentComponent } from './course-list/modal/edit-component/edit-component.component';
+import { AuthorComponent } from './course-list/modal/custom-fields/author/author.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { EditComponentComponent } from './course-list/modal/edit-component/edit-
     ModalComponent,
     AddCourseComponent,
     EditComponentComponent,
+    AuthorComponent,
     
   ],
   entryComponents: [ModalComponent],

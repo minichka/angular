@@ -2,7 +2,7 @@
   <div class='form-group'>
       <label>Name</label>
       <input class="form-control" type="text" formControlName="name" placeholder="Enter title">
-      <div *ngIf="submitted && f.name.errors" class="text-danger">
+      <div *ngIf="f.name.invalid && f.name.touched && f.name.errors" class="text-danger">
         <div *ngIf="f.name.errors.required">Name is required</div>
         <div *ngIf="f.name.errors.maxlength">Maximum length is 50</div>
       </div>
@@ -13,7 +13,7 @@
   <div class='form-group'>
     <label>Description </label>
     <input class='form-control' type="text" formControlName="description" placeholder="Enter description">
-    <div *ngIf="submitted && f.description.errors" class="text-danger">
+    <div *ngIf="f.description.invalid && f.description.touched && f.description.errors" class="text-danger">
       <div *ngIf="f.description.errors.required">Description is required</div>
       <div *ngIf="f.description.errors.maxlength">Maximum length is 500</div>
     </div>
@@ -22,24 +22,25 @@
   <div class='form-group'>
     <label>Date</label>
       <input class='form-control' type="test" formControlName="date" placeholder="Enter date">
-    <div *ngIf="submitted && f.date.errors" class="text-danger">
-      <div *ngIf="f.date.errors.pattern">Enter the right date</div>
-      <div *ngIf="f.date.errors.required">Length is required</div>
+    <div *ngIf="f.date.invalid && f.date.touched && f.date.errors " class="text-danger">
+      <div *ngIf="f.date.errors.custom">Enter the right date format dd/MM/yyyy</div>
+      <div *ngIf="f.date.errors.required">Date is required</div>
     </div>
   </div>
   
   <div class='form-group'>
     <label>Length </label>
     <input class="form-control" type="text" formControlName="length" placeholder="Enter length">
-    <div *ngIf="submitted && f.length.errors" class="text-danger">
-      <div *ngIf="f.length.errors.pattern">Enter the number</div>
+    <div *ngIf="f.length.invalid && f.length.touched && f.length.errors" class="text-danger">
       <div *ngIf="f.length.errors.required">Length is required</div>
+      <div *ngIf="f.length.errors.custom">Enter the number</div>
     </div>
   </div> 
-  <!-- <label>
-      Authors
-      <input type="" formControlName="" placeholder="Authors">
-    </label> -->
+
+  <app-author formControlName="author"></app-author>
+  <div *ngIf="f.author.invalid && f.author.touched && f.author.errors" class="text-danger">
+    <div *ngIf="f.author.errors.required">Author is required</div>
+  </div>
 
     <button type="submit" class="btn btn-primary">Save</button>
     <button type="reset" (click)='cancel();'class="btn btn-primary">Cancel</button>

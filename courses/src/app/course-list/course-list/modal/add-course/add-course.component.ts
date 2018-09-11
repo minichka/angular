@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CourseListItem } from '../../../../model/course-list-item.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CourseListService } from '../../../../services/course-list.service';
-import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidationErrors, ValidatorFn, AbstractControl } from '@angular/forms';
 import { LoaderService } from '../../../../services/loader.service';
 import { finalize } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
@@ -28,13 +28,18 @@ export class AddCourseComponent implements OnInit {
     ]),
     date: new FormControl('',[
       Validators.required,
-      Validators.pattern(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i)
+      //Validators.pattern(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i)
+      this.dateValidator()
     ]),
     length: new FormControl('',[
       Validators.required,
-      Validators.pattern('(\d)+')
+      //Validators.pattern('(\d)+')
+      this.numericValidator()
+    ]),
+    author: new FormControl('',[
+      Validators.required
     ])
-  });
+  }); 
   get f() { return this.newCourseForm.controls; }
   //private item: CourseListItem;
   constructor(private router: Router, 
@@ -74,4 +79,27 @@ export class AddCourseComponent implements OnInit {
   cancel(){
     this.router.navigate(['/courses']);
   }
+
+  private numericValidator(): ValidatorFn {
+    const pattern: RegExp = /(\d)+/;
+    return (control: AbstractControl): { [key: string]: any } => {
+      if (!(control.dirty || control.touched)) {
+        return null;
+      } else {
+        return pattern.test(control.value) ? null : {custom: `Should be a number`};
+      }
+    };
+  }
+
+  private dateValidator(): ValidatorFn {
+    const pattern: RegExp = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/i;
+    return (control: AbstractControl): { [key: string]: any } => {
+      if (!(control.dirty || control.touched)) {
+        return null;
+      } else {
+        return pattern.test(control.value) ? null : {custom: `Should be a valid date`};
+      }
+    };
+  }
 }
+
